@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>MS Paint</title>
+    <link rel="stylesheet" href="MSPaint.style.css">
     <script>
         var canvas, ctx, flag = false,
             prevX = 0,
@@ -81,6 +82,26 @@
                 }
             }
         }
+
+        function saveCanvas() { //
+
+        }
+
+        function clearCanvas() { //
+            var confirmClear = confirm("Clear canvas?");
+            if (confirmClear) {
+                ctx.clearRect(0, 0, width, height);
+                $("#canvasImage").style.display = "none";
+            }
+        }
+
+        function undoStroke() { //
+
+        }
+
+        function redoStroke() { //
+
+        }
     </script>
 </head>
 
@@ -101,10 +122,10 @@
     </header>
 
     <section>
-        <button >Undo</button>
-        <button >Redo</button>
-        <button >Clear</button>
-        <button >Save</button>
+        <button id="btnUndoStroke" onClick="undoStroke()">Undo</button>
+        <button id="btnRedoStroke" onClick="redoStroke()">Redo</button>
+        <button onClick="clearCanvas()">Clear</button>
+        <button id="btnSaveCanvas" onClick="saveCanvas()">Save</button>
     </section>
 
     <section>
