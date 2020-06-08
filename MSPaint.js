@@ -26,9 +26,11 @@ window.onload = function () {
     canvas.addEventListener("mouseout", function (e) {
         findCoord("out", e)
     }, false);
+
+    retrieveCanvas(canvas);
 }
 
-function pickColour(colour) { //
+function pickColour(colour) {
     penColour = colour.id;
 }
 
@@ -40,6 +42,9 @@ function draw() {
     ctx.lineWidth = penWidth;
     ctx.stroke();
     ctx.closePath();
+
+    canvas = document.getElementById("canvasSurface");
+    storeCanvas(canvas);
 }
 
 function findCoord(res, e) {
@@ -83,8 +88,10 @@ function clearCanvas() {
     var confirmClear = confirm("Clear canvas?");
     if (confirmClear) {
         ctx.clearRect(0, 0, width, height);
-        $("#canvasImage").style.display = "none";
     }
+
+    canvas = document.getElementById("canvasSurface");
+    storeCanvas(canvas);
 }
 
 function undoStroke() {
@@ -93,4 +100,19 @@ function undoStroke() {
 
 function redoStroke() {
 
+}
+
+function storeCanvas(canvas) {
+    var canvasDataUrl = canvas.toDataURL();
+    localStorage.setItem("canvasDataUrl", canvasDataUrl);
+}
+
+function retrieveCanvas(canvas) {
+    var canvasDataUrl = localStorage.getItem("canvasDataUrl");
+
+    var canvasImage = new Image;
+    canvasImage.src = canvasDataUrl;
+    canvasImage.onload = function () {
+        ctx.drawImage(canvasImage, 0, 0);
+    }
 }
