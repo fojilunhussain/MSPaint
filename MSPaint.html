@@ -35,6 +35,10 @@
             }, false);
         }
 
+        function pickColour(colour) { //
+            penColour = colour.id;
+        }
+
         function draw() {
             ctx.beginPath();
             ctx.moveTo(prevX, prevY);
@@ -56,6 +60,7 @@
                 isDrawing = true;
                 if (isDrawing) {
                     ctx.beginPath();
+                    ctx.fillStyle = penColour;
                     ctx.fillRect(curX, curY, 2, 2);
                     ctx.closePath();
                     isDrawing = false;
@@ -112,16 +117,16 @@
 
     <footer>
         <section class="palette">
-            <div style="background:red; width:10px; height:10px;"></div>
-            <div style="background:orange; width:10px; height:10px;"></div>
-            <div style="background:yellow; width:10px; height:10px;"></div>
-            <div style="background:green; width:10px; height:10px;"></div>
-            <div style="background:blue; width:10px; height:10px;"></div>
-            <div style="background:purple; width:10px; height:10px;"></div>
-            <div style="background:pink; width:10px; height:10px;"></div>
-            <div style="background:brown; width:10px; height:10px;"></div>
-            <div style="background:black; width:10px; height:10px;"></div>
-            <div style="background:white; width:10px; height:10px;"></div>
+            <div style="background:red; width:10px; height:10px;" id="red" onClick="pickColour(this)"></div>
+            <div style="background:orange; width:10px; height:10px;" id="orange" onClick="pickColour(this)"></div>
+            <div style="background:yellow; width:10px; height:10px;" id="yellow" onClick="pickColour(this)"></div>
+            <div style="background:green; width:10px; height:10px;" id="green" onClick="pickColour(this)"></div>
+            <div style="background:blue; width:10px; height:10px;" id="blue" onClick="pickColour(this)"></div>
+            <div style="background:purple; width:10px; height:10px;" id="purple" onClick="pickColour(this)"></div>
+            <div style="background:pink; width:10px; height:10px;" id="pink" onClick="pickColour(this)"></div>
+            <div style="background:brown; width:10px; height:10px;" id="brown" onClick="pickColour(this)"></div>
+            <div style="background:black; width:10px; height:10px;" id="black" onClick="pickColour(this)"></div>
+            <div style="background:white; width:10px; height:10px;" id="white" onClick="pickColour(this)"></div>
         </section>
 
         <section>
