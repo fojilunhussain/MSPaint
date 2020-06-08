@@ -6,15 +6,15 @@ canvas {
     display: flex;
     flex-wrap: wrap;
 
-    
+
 }
 
-.palette > div {
+.palette>div {
     border-style: inset;
     width: 10px;
     height: 10px;
 }
 
-.palette > div:focus {
-    background-color:blue;
+.palette>div:focus {
+    background-color: blue;
 }
