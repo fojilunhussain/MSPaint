@@ -22,6 +22,47 @@
         </nav>
     </header>
 
+    <section>
+        <button >Undo</button>
+        <button >Redo</button>
+        <button >Clear</button>
+        <button >Save</button>
+    </section>
+
+    <section>
+        <canvas id="canvasSurface" width="500" height="500">
+            Your browser does not support HTML5.
+        </canvas>
+
+        <img id="canvasImage" />
+    </section>
+
+    <footer>
+        <section class="palette">
+            <div style="background:red; width:10px; height:10px;"></div>
+            <div style="background:orange; width:10px; height:10px;"></div>
+            <div style="background:yellow; width:10px; height:10px;"></div>
+            <div style="background:green; width:10px; height:10px;"></div>
+            <div style="background:blue; width:10px; height:10px;"></div>
+            <div style="background:purple; width:10px; height:10px;"></div>
+            <div style="background:pink; width:10px; height:10px;"></div>
+            <div style="background:brown; width:10px; height:10px;"></div>
+            <div style="background:black; width:10px; height:10px;"></div>
+            <div style="background:white; width:10px; height:10px;"></div>
+        </section>
+
+        <section>
+            <!-- brushes -->
+        </section>
+
+        <section>
+            <p>Paint used for this colour:</p>
+            <span>0%</span>
+            <progress value="0" max="100"></progress>
+            <span>100%</span>
+        </section>
+    </footer>
+
 </body>
 
 </html>
