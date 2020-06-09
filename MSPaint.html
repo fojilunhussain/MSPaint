@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <title>MS Paint</title>
     <link rel="stylesheet" href="MSPaint.style.css">
-    <script src="MSPaint.js"></script>
 </head>
 
 <body>
@@ -35,8 +34,6 @@
         <canvas id="canvasSurface" width="500" height="500">
             Your browser does not support HTML5.
         </canvas>
-
-        <img id="canvasImage" />
     </section>
 
     <footer>
@@ -53,8 +50,10 @@
             <div style="background:white; width:10px; height:10px;" id="white" onClick="pickColour(this)"></div>
         </section>
 
-        <section>
-            <!-- brushes -->
+        <section class="brushes">
+            <div class="brushSize">
+                <input type="range" min="1" max="100" onchange="getPenWidth(this)" id="brushSizeSlider">
+            </div>
         </section>
 
         <section>
@@ -65,6 +64,7 @@
         </section>
     </footer>
 
+    <script src="MSPaint.js"></script>
 </body>
 
 </html>

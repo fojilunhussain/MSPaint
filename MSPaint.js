@@ -6,7 +6,7 @@ var canvas, ctx, flag = false,
     isDrawing = false;
 
 var penColour = "black",
-    penWidth = 2;
+    penWidth = document.getElementById("brushSizeSlider").value;
 
 window.onload = function () {
     canvas = document.getElementById("canvasSurface");
@@ -28,6 +28,10 @@ window.onload = function () {
     }, false);
 
     retrieveCanvas(canvas);
+}
+
+function getPenWidth(width) {
+    penWidth = width.value;
 }
 
 function pickColour(colour) {
