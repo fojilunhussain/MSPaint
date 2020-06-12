@@ -24,10 +24,10 @@
     </header>
 
     <section>
-        <button id="btnUndoStroke" onClick="undoStroke()">Undo</button>
-        <button id="btnRedoStroke" onClick="redoStroke()">Redo</button>
-        <button onClick="clearCanvas()">Clear</button>
-        <button id="btnSaveCanvas" onClick="saveCanvas()">Save</button>
+        <button id="btnUndoStroke">Undo</button>
+        <button id="btnRedoStroke">Redo</button>
+        <button id="btnClearCanvas">Clear</button>
+        <button id="btnSaveCanvas">Save</button>
     </section>
 
     <section>
@@ -38,21 +38,21 @@
 
     <footer>
         <section class="palette">
-            <div style="background:red; width:10px; height:10px;" id="red" onClick="pickColour(this)"></div>
-            <div style="background:orange; width:10px; height:10px;" id="orange" onClick="pickColour(this)"></div>
-            <div style="background:yellow; width:10px; height:10px;" id="yellow" onClick="pickColour(this)"></div>
-            <div style="background:green; width:10px; height:10px;" id="green" onClick="pickColour(this)"></div>
-            <div style="background:blue; width:10px; height:10px;" id="blue" onClick="pickColour(this)"></div>
-            <div style="background:purple; width:10px; height:10px;" id="purple" onClick="pickColour(this)"></div>
-            <div style="background:pink; width:10px; height:10px;" id="pink" onClick="pickColour(this)"></div>
-            <div style="background:brown; width:10px; height:10px;" id="brown" onClick="pickColour(this)"></div>
-            <div style="background:black; width:10px; height:10px;" id="black" onClick="pickColour(this)"></div>
-            <div style="background:white; width:10px; height:10px;" id="white" onClick="pickColour(this)"></div>
+            <div style="background-color:red;" class="paletteColour"></div>
+            <div style="background-color:orange;" class="paletteColour"></div>
+            <div style="background-color:yellow;" class="paletteColour"></div>
+            <div style="background-color:green;" class="paletteColour"></div>
+            <div style="background-color:blue;" class="paletteColour"></div>
+            <div style="background-color:purple;" class="paletteColour"></div>
+            <div style="background-color:pink;" class="paletteColour"></div>
+            <div style="background-color:brown;" class="paletteColour"></div>
+            <div style="background-color:black;" class="paletteColour"></div>
+            <div style="background-color:white;" class="paletteColour"></div>
         </section>
 
         <section class="brushes">
             <div class="brushSize">
-                <input type="range" min="1" max="100" onchange="getPenWidth(this)" id="brushSizeSlider">
+                <input type="range" min="1" max="100" value="1" id="brushSizeSlider">
             </div>
         </section>
 
@@ -64,7 +64,8 @@
         </section>
     </footer>
 
-    <script src="MSPaint.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="MSPaint.js"></script>
 </body>
 
 </html>

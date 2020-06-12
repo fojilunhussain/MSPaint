@@ -3,40 +3,67 @@ var canvas, ctx, flag = false,
     curX = 0,
     prevY = 0,
     curY = 0,
-    isDrawing = false;
+    isDrawing = false,
+    penColour = "black";
 
-var penColour = "black",
-    penWidth = document.getElementById("brushSizeSlider").value;
-
-window.onload = function () {
+$(document).ready(function () {
     canvas = document.getElementById("canvasSurface");
     ctx = canvas.getContext("2d");
     width = canvas.width;
     height = canvas.height;
 
+    penWidth = $("#brushSizeSlider").value;
+
     canvas.addEventListener("mousemove", function (e) {
+        console.log(event.type);
         findCoord("move", e)
     }, false);
     canvas.addEventListener("mousedown", function (e) {
+        console.log(event.type);
         findCoord("down", e)
     }, false);
     canvas.addEventListener("mouseup", function (e) {
+        console.log(event.type);
         findCoord("up", e)
     }, false);
     canvas.addEventListener("mouseout", function (e) {
+        console.log(event.type);
         findCoord("out", e)
     }, false);
 
     retrieveCanvas(canvas);
-}
+    
+    $("#brushSizeSlider").change(function (event) {
+        console.log("PEN WIDTH: " + this.value);
+        penWidth = this.value;
+    });
 
-function getPenWidth(width) {
-    penWidth = width.value;
-}
+    $(".paletteColour").click(function (event) {
+        penColour = $(this).css("background-color");
+    });
 
-function pickColour(colour) {
-    penColour = colour.id;
-}
+    $("#btnUndoStroke").click(function (event) {
+
+    });
+    
+    $("#btnRedoStroke").click(function (event) {
+
+    });
+    
+    $("#btnClearCanvas").click(function (event) {
+        var confirmClear = confirm("Clear canvas?");
+        if (confirmClear) {
+            ctx.clearRect(0, 0, width, height);
+        }
+    
+        canvas = document.getElementById("canvasSurface");
+        storeCanvas(canvas);
+    });
+
+    $("#btnSaveCanvas").click(function (event) {
+
+    });
+});
 
 function draw() {
     ctx.beginPath();
@@ -47,8 +74,8 @@ function draw() {
     ctx.stroke();
     ctx.closePath();
 
-    canvas = document.getElementById("canvasSurface");
-    storeCanvas(canvas);
+    canvasSurface = $("#canvasSurface");
+    storeCanvas(canvasSurface);
 }
 
 function findCoord(res, e) {
@@ -84,31 +111,16 @@ function findCoord(res, e) {
     }
 }
 
-function saveCanvas() {
-
-}
-
-function clearCanvas() {
-    var confirmClear = confirm("Clear canvas?");
-    if (confirmClear) {
-        ctx.clearRect(0, 0, width, height);
+function storeCanvas(canvasSurface) {
+    try {
+        var canvasDataUrl = canvasSurface[0].toDataURL();
+        localStorage.setItem("canvasDataUrl", canvasDataUrl);
+    } catch (err) {
+        var canvasDataUrl = canvasSurface.toDataURL();
+        console.log(canvasSurface)
+        localStorage.setItem("canvasDataUrl", canvasDataUrl);
     }
 
-    canvas = document.getElementById("canvasSurface");
-    storeCanvas(canvas);
-}
-
-function undoStroke() {
-
-}
-
-function redoStroke() {
-
-}
-
-function storeCanvas(canvas) {
-    var canvasDataUrl = canvas.toDataURL();
-    localStorage.setItem("canvasDataUrl", canvasDataUrl);
 }
 
 function retrieveCanvas(canvas) {
