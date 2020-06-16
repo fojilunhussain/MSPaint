@@ -9,30 +9,36 @@
 
 <body>
 
-    <div class="mainBody">
-        <header>
-            
-            <img id="icon" src="icon.png" style="width:100px; height:100px" />
+    <header>
+        <img id="icon" src="icon.png" style="width:100px; height:100px" />
 
-            <hgroup id="info">
-                <h5>MS Paint</h5>
-                <h6>By Fojilun Hussain</h6>
-            </hgroup>
-        </header>
-    
-        <section>
-            <button id="btnUndoStroke">Undo</button>
-            <button id="btnRedoStroke">Redo</button>
-            <button id="btnClearCanvas">Clear</button>
-            <button id="btnSaveCanvas">Save</button>
-        </section>
-    
-        <section>
-            <canvas id="canvasSurface" width="500" height="500">
-                Your browser does not support HTML5.
-            </canvas>
-        </section>
-    
+        <hgroup id="info">
+            <h5>MS Paint</h5>
+            <h6>By Fojilun Hussain</h6>
+        </hgroup>
+
+        <nav>
+            <a href="https://www.github.com/fojilunhussain">GitHub</a>
+            <a href="https://www.instagram.com/maggotsoups/">Instagram</a>
+        </nav>
+    </header>
+
+    <section>
+        <button id="btnUndoStroke">Undo</button>
+        <button id="btnRedoStroke">Redo</button>
+        <button id="btnClearCanvas">Clear</button>
+        <button id="btnSaveCanvas">Save</button>
+    </section>
+
+    <section>
+        <canvas id="canvasSurface" width="500" height="500">
+            Your browser does not support HTML5.
+        </canvas>
+    </section>
+
+    <input type="text" id="inputMessage" value="Hello, Web Socket"><button id="sendButton">Send</button>
+
+    <footer>
         <section class="palette">
             <div style="background-color:red;" class="paletteColour"></div>
             <div style="background-color:orange;" class="paletteColour"></div>
@@ -45,7 +51,7 @@
             <div style="background-color:black;" class="paletteColour"></div>
             <div style="background-color:white;" class="paletteColour"></div>
         </section>
-    
+
         <section class="brushes">
             <div class="brushSize">
                 <input type="range" min="1" max="100" value="1" id="brushSizeSlider">
@@ -58,14 +64,7 @@
             <progress value="0" max="100"></progress>
             <span>100%</span>
         </section>
-    </div>
-
-    <aside class="imgSearch">
-        <input type="text" id="inputImgSearch" value="Search for stuff">
-        <button id="btnImgSearch">Send</button>
-
-        <div id="imgResult"></div>
-    </aside>
+    </footer>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="MSPaint.js"></script>

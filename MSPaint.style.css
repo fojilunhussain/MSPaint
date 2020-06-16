@@ -8,7 +8,6 @@
 
 body {
     background-color: var(--greenyGreen);
-    display: flex;
 }
 
 header {
@@ -24,7 +23,6 @@ header * {
 
 canvas {
     border: 1px solid black;
-    background-color: white;
 }
 
 .palette {
@@ -40,12 +38,4 @@ canvas {
 
 .palette>div:focus {
     background-color: blue;
-}
-
-.imgSearch {
-    padding: 105px 0px 0px 20px;
-}
-
-#imgResult{
-    padding-top: 15px;
 }
