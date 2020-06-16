@@ -14,8 +14,9 @@ $(document).ready(function () {
 
     penWidth = $("#brushSizeSlider").value;
 
+    retrieveCanvas(canvas);
+
     canvas.addEventListener("mousemove", function (e) {
-        console.log(event.type);
         findCoord("move", e)
     }, false);
     canvas.addEventListener("mousedown", function (e) {
@@ -23,16 +24,12 @@ $(document).ready(function () {
         findCoord("down", e)
     }, false);
     canvas.addEventListener("mouseup", function (e) {
-        console.log(event.type);
         findCoord("up", e)
     }, false);
     canvas.addEventListener("mouseout", function (e) {
-        console.log(event.type);
         findCoord("out", e)
     }, false);
 
-    retrieveCanvas(canvas);
-    
     $("#brushSizeSlider").change(function (event) {
         console.log("PEN WIDTH: " + this.value);
         penWidth = this.value;
@@ -45,23 +42,48 @@ $(document).ready(function () {
     $("#btnUndoStroke").click(function (event) {
 
     });
-    
+
     $("#btnRedoStroke").click(function (event) {
 
     });
-    
+
     $("#btnClearCanvas").click(function (event) {
         var confirmClear = confirm("Clear canvas?");
         if (confirmClear) {
             ctx.clearRect(0, 0, width, height);
         }
-    
+
         canvas = document.getElementById("canvasSurface");
         storeCanvas(canvas);
     });
 
     $("#btnSaveCanvas").click(function (event) {
 
+    });
+
+    $("#btnImgSearch").click(function () {
+        const imgQuery = $("#inputImgSearch").val();
+        console.log("Image query: " + imgQuery);
+        $.ajax({
+                url: `https://api.imgur.com/3/gallery/search/?q=${imgQuery}`,
+                headers: {
+                    'Authorization': 'Client-ID API_KEY'
+                },
+                type: "GET",
+                dataType: "json",
+                success: function (response) {
+                    console.log("success");
+                }
+            })
+            .done(function (reponse) {
+                getRandomImage(reponse);
+            })
+            .fail(function (response) {
+                console.log(response.status);
+                $("#imgResult").html(`
+                    <p>oh no</p>
+                `);
+            });
     });
 });
 
@@ -116,6 +138,7 @@ function storeCanvas(canvasSurface) {
         var canvasDataUrl = canvasSurface[0].toDataURL();
         localStorage.setItem("canvasDataUrl", canvasDataUrl);
     } catch (err) {
+        console.log(err)
         var canvasDataUrl = canvasSurface.toDataURL();
         console.log(canvasSurface)
         localStorage.setItem("canvasDataUrl", canvasDataUrl);
@@ -130,5 +153,29 @@ function retrieveCanvas(canvas) {
     canvasImage.src = canvasDataUrl;
     canvasImage.onload = function () {
         ctx.drawImage(canvasImage, 0, 0);
+    }
+}
+
+function getRandomImage(response) {
+    try {
+        const numOfAlbumResults = response.data.length;
+        console.log(`Number of albums: ${numOfAlbumResults}`);
+
+        const randomAlbumIndex = Math.floor(Math.random() * Math.floor(numOfAlbumResults - 1));
+        console.log(`Index of random album chosen: ${randomAlbumIndex}`);
+
+        const numOfAlbumImageResults = response.data[randomAlbumIndex].images.length;
+        console.log(`Number of images in chosen album: ${numOfAlbumImageResults}`);
+
+        const randomAlbumImageIndex = Math.floor(Math.random() * Math.floor(numOfAlbumImageResults - 1));
+        console.log(`Index of random image chosen: ${randomAlbumImageIndex}`);
+
+        const randomImageLink = response.data[randomAlbumIndex].images[randomAlbumImageIndex].link;
+        console.log(`Random image link: ${randomImageLink}`);
+
+        $("#imgResult").html(`<img src=${randomImageLink} width="500" height="500"/>`);
+    } catch (err) {
+        console.log(err)
+        $("#imgResult").html(`<p>Oops! Please try again</p>`);
     }
 }
