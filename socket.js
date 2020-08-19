@@ -17,7 +17,7 @@ Socket.onclose = function(e) {
 }
 
 Socket.onerror = function(e) {
-    console.log(`error: ${e}`);
+    console.log(`error: ${JSON.stringify(e)}`);
     if(e.code == "EHOSTDOWN") {
         console.log("server down")
     }
@@ -27,5 +27,15 @@ window.onload = function() {
     $("#sendButton").onclick = function() {
         Socket.send($("#inputMessage").value);
         console.log("sent")
+    }
+}
+
+$("canvasSurface").onchange = function() {
+    try {
+        Socket.send($("canvasSurface").value)
+        console.log("sent")
+    }
+    catch {
+        
     }
 }
