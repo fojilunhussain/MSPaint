@@ -74,7 +74,7 @@ $(document).ready(function () {
                 // crossDomain: true,
                 // dataType: 'jsonp',
                 headers: {
-                    'Authorization': 'Client-ID af79a73753ebd81',
+                    'Authorization': 'Client-ID ',
                 },
                 success: function (response) {
                     console.log("success");
