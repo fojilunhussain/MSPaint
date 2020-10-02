@@ -41,11 +41,11 @@ $(document).ready(function () {
     $("#btnUndoStroke").click(function (event) {
 
     });
-    
+
     $("#btnRedoStroke").click(function (event) {
 
     });
-    
+
     $("#btnClearCanvas").click(function (event) {
         var confirmClear = confirm("Clear canvas?");
         if (confirmClear) {
