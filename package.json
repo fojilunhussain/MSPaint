@@ -11,7 +11,7 @@
     "reconnecting-websocket": "^4.4.0",
     "require": "^2.4.20",
     "websocket": "^1.0.32",
-    "ws": "^7.5.10"
+    "ws": "^8.17.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
