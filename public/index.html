@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>MS Paint</title>
-    <link rel="stylesheet" href="MSPaint.style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -15,13 +15,12 @@
             <img id="icon" src="icon.png" style="width:100px; height:100px" />
 
             <hgroup id="info">
-                <h5>MS Paint</h5>
+                <h5>My Silly Paint</h5>
                 <h6>By Fojilun Hussain</h6>
             </hgroup>
 
             <nav>
                 <a href="https://www.github.com/fojilunhussain">GitHub</a>
-                <a href="https://www.instagram.com/maggotsoups/">Instagram</a>
             </nav>
         </header>
 <section>
@@ -55,13 +54,6 @@
                 <input type="range" min="1" max="100" value="1" id="brushSizeSlider">
             </div>
         </section>
-
-        <section>
-            <p>Paint used for this colour:</p>
-            <span>0%</span>
-            <progress value="0" max="100"></progress>
-            <span>100%</span>
-        </section>
     </div>
 
     <aside class="imgSearch">
@@ -72,9 +64,9 @@
     </aside>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="MSPaint.js"></script>
-    <script type="text/javascript" src="socket.js"></script>
-    <script type="module" src="server.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="client.js" defer></script>
+    <script type="module" src="../server.js"></script>
 </body>
 
 </html>
