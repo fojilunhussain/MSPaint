@@ -1,6 +1,7 @@
-require('dotenv').config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
-const apiKey = process.env.API_KEY;
+// const apiKey = process.env.API_KEY;
 
 var canvas, ctx, flag = false,
     prevX = 0,
@@ -20,19 +21,12 @@ $(document).ready(function () {
 
     retrieveCanvas(canvas);
 
-    canvas.addEventListener("mousemove", function (e) {
-        findCoord("move", e)
-    }, false);
-    canvas.addEventListener("mousedown", function (e) {
-        console.log(event.type);
-        findCoord("down", e)
-    }, false);
-    canvas.addEventListener("mouseup", function (e) {
-        findCoord("up", e)
-    }, false);
-    canvas.addEventListener("mouseout", function (e) {
-        findCoord("out", e)
-    }, false);
+    $("#canvasSurface").on({
+        mousemove: (e) => findCoord("move", e),
+        mousedown: (e) => findCoord("down", e),
+        mouseup: (e) => findCoord("up", e),
+        mouseout: (e) => findCoord("out", e),
+    });
 
     $("#brushSizeSlider").change(function (event) {
         console.log("PEN WIDTH: " + this.value);
@@ -75,7 +69,6 @@ $(document).ready(function () {
                 throw new imageQueryTypeException(imageQuerytype);
             }
 
-            // if SFW filter on then throw new error
         }
         catch (err) {
             console.log(err)
@@ -94,7 +87,7 @@ $(document).ready(function () {
         $.ajax({
             url: `https://api.imgur.com/3/gallery/search/?q=${imgQuery}`,
             headers: {
-                'Authorization': apiKey
+                'Authorization': "" // apiKey
             },
             type: "GET",
             dataType: "json",
@@ -191,17 +184,6 @@ function imageSearchTypeException(imageQuerytype) {
     }
 }
 
-// function sfw exception
-// can't search for nsfw images
-
-function imageResponseTypeException(imageResponseType) {
-    this.imageResponseType = imageResponseType;
-    this.message = "is not a jpeg image";
-    this.toString = function () {
-        return this.value + this.message;
-    }
-}
-
 function getRandomImage(response) {
     try {
         const numOfAlbumResults = response.data.length;
@@ -217,12 +199,6 @@ function getRandomImage(response) {
         console.log(`Index of random image chosen: ${randomAlbumImageIndex}`);
 
         const randomImageLink = response.data[randomAlbumIndex].images[randomAlbumImageIndex].link;
-
-        const imageResponseType = response.data[randomAlbumIndex].images[randomAlbumImageIndex].type;
-
-        if (response.data[randomAlbumIndex].images[randomAlbumImageIndex].type != "image/jpeg") {
-            throw new imageResponseTypeException(imageResponseType);
-        }
 
         console.log(`Random image link: ${randomImageLink}`);
         $("#imgResult").html(`<img src=${randomImageLink} width="500" height="500"/>`);
